@@ -1,0 +1,167 @@
+<template>
+  <div class="page" data-name="about">
+    <div class="navbar">
+      <div class="navbar-inner sliding">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="icon icon-back"></i>
+            <span class="ios-only">Back</span>
+          </a>
+        </div>
+        <div class="title">About</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block-title">About My App</div>
+      <div class="block block-strong"> 
+
+      <ul id="popx">     
+        <li v-for="(vitem, index) in vitems">
+          {vitem.doc._id} {vitem.doc.title}
+        </li>
+      </ul>
+
+        <p id="popx" >{{name}}  {apphome} Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>
+        <p>Laudantium neque magnam vitae nemo quam commodi, in cum dolore obcaecati laborum, excepturi harum, optio qui, consequuntur? Obcaecati dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis, ut tenetur alias.</p>
+      </div>
+      <div class="block">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni molestiae laudantium dignissimos est nobis delectus nemo ea alias voluptatum architecto, amet similique, saepe iste consectetur in repellat ut minus quibusdam!</p>
+        <p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
+        <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
+      </div>
+    </div>
+  </div>
+</template>
+<style>
+  p {
+    margin: 10px 0;
+  }
+</style>
+<script>
+
+
+  return {
+    // Lifecycle Hooks
+    beforeCreate() {
+      console.log('componentBeforeCreate', this)
+    },
+    created() {
+      console.log('componentCreated', this)
+    },
+    beforeMount() {
+      console.log('componentBeforeMount', this)
+    },
+    mounted() {
+      console.log('componentMounted', this);
+    },
+    beforeDestroy() {
+      console.log('componentBeforeDestroy', this);
+    },
+    destroyed() {
+      console.log('componentDestroyed', this);
+    },
+    // Component Data
+    data: function () {
+      // Must return an object
+      return {
+        name: 'Jimmy',
+        age: 25,
+        like: ['Tennis', 'Chess', 'Football'],
+      }
+    },
+    // Component Methods
+    methods: {
+      openAlert: function () {
+        var self = this;
+        self.$app.dialog.alert('Hello World');
+      },
+    },
+    // Page Events
+    on: {
+      pageMounted: function(e, page) {
+        console.log('pageMounted', page);
+      },
+      pageInit: function(e, page) {
+        console.log('pageInit', page);
+        db.changes({
+          since: 'now',
+          live: true,
+          retry: true,
+          include_docs: true,
+          continuous: true
+        }).on('change', getRows);
+
+          // We have to create a new todo document and enter it in the database
+          function addTodo(text) {
+            var todo = {
+            _id: new Date().toISOString(),
+            title: 'softhryd',
+            completed: false
+          };
+          }
+  function sync() {
+  //syncDom.setAttribute('data-sync-state', 'syncing');
+  var opts = {live: true, retry: true};
+  db.replicate.to(remoteCouch, opts, syncError);
+  db.replicate.from(remoteCouch, opts, syncError);
+  }
+// There was some form or error syncing
+  function syncError() {
+    //syncDom.setAttribute('data-sync-state', 'error');
+  }
+          //var dbx = showTodos()
+          // Show the current list of todos by reading them from the database
+          function showTodos() {
+            db.allDocs({include_docs: true, descending: true}, function(err, doc) {
+                return doc.rows
+          });
+          }
+
+          function pomo(){
+            alert()
+          }
+          function getRows(){
+            var result = db.allDocs({include_docs: true}).then(function (result) {
+                  return result.rows;
+            });
+
+            return result;
+          }
+          getRows().then(function(rows){
+            var vm = new Vue({
+            delimiters : ['{', '}'],
+            el: '#popx',
+            data: {
+            vitems: rows,
+            sqlhome: '192.168.0.17'
+            }
+            });
+          })
+
+if (remoteCouch) {
+    sync();
+
+  }
+
+
+    },
+      pageBeforeIn: function(e, page) {
+        console.log('pageBeforeIn', page);
+      },
+      pageAfterIn: function(e, page) {
+        console.log('pageAfterIn', page);
+      },
+      pageBeforeOut: function(e, page) {
+        console.log('pageBeforeOut', page);
+      },
+      pageAfterOut: function(e, page) {
+        console.log('pageAfterOut', page);
+      },
+      pageBeforeRemove: function(e, page) {
+        console.log('pageBeforeRemove', page);
+      },
+    }
+  }
+
+</script>
+
