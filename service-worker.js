@@ -106,5 +106,6 @@ self.__WB_MANIFEST = [
 /*
   Enable precaching
   It is better to comment next line during development
-*/
+  
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST || []);
+*/
