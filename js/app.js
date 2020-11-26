@@ -77,9 +77,10 @@ var app  = new Framework7({
   },
   // App routes
   routes: routes,
-  serviceworker:{
-	  
-	},
+    // Register service worker
+  serviceWorker: {
+    path: '/wsx/service-worker.js',
+  },
 });
 
 // Init/Create main view
