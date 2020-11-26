@@ -77,6 +77,9 @@ var app  = new Framework7({
   },
   // App routes
   routes: routes,
+  serviceworker:{
+	  
+	},
 });
 
 // Init/Create main view
