@@ -79,7 +79,7 @@ var app  = new Framework7({
   routes: routes,
     // Register service worker
   serviceWorker: {
-    path: '/testx/service-worker.js',
+    path: '/wsx/service-worker.js',
   },
 });
 
@@ -89,7 +89,7 @@ var mainView = app.views.create('.view-main', {
 });
 
 var ls = app.loginScreen.create({ el: '.login-screen' });
-ls.open(true);
+// ls.open(true);
 
 
 $$('.login-screen .button').on('click', function () {
